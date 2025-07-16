@@ -2,7 +2,8 @@ import os,sys
 import copy
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
-from MST import Node, mst_broadcast,list_node_datas, mst_reduce, complete_transmissions, mst_gather, mst_scatter
+from MST import mst_broadcast, mst_reduce, mst_gather, mst_scatter
+from utils import Node, list_node_datas, complete_transmissions
 
 def test_mst_broadcast(
     node_num: int = 4,

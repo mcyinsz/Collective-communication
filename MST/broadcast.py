@@ -1,9 +1,8 @@
-import math
-import time
-from collections import deque
-from .utils import Node, list_node_datas
+import os, sys
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+from utils import Node
+
 from typing import List
-from math import floor
 
 # function for one node
 def mst_broadcast(
@@ -48,23 +47,3 @@ def mst_broadcast(
         else:
             # right sub tree, right root
             mst_broadcast(node_list, me, root, mid + 1, right, depth + 1)
-
-if __name__ == "__main__":
-
-    node_num = 4
-    root_id = 0
-    data = list(range(node_num))
-
-    node_list = [Node(i, data_size=node_num) for i in range(node_num)]
-    node_list[root_id].data = data
-    node_list[root_id].has_data = True
-    
-    for node_id in range(node_num):
-        mst_broadcast(
-            node_list=node_list,
-            me=node_id,     
-            root=root_id,    
-            left=0,          
-            right=node_num-1 
-        )
-    # list_node_datas(node_list)
