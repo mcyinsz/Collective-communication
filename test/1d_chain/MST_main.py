@@ -1,6 +1,6 @@
 import os,sys
 import copy
-sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
 from MST import Node, mst_broadcast,list_node_datas, mst_reduce, complete_transmissions, mst_gather, mst_scatter
 
@@ -94,27 +94,27 @@ if __name__ == "__main__":
     print("="*50)
     print("start testing MST broadcast:")
     test_mst_broadcast(
-        node_num=8,
+        node_num=16,
         root_id=0
     )
 
     print("="*50)
     print("start testing MST reduce:")
     test_mst_reduce(
-        node_num=8,
+        node_num=16,
         root_id=1
     )
 
     print("="*50)
     print("start testing MST gather:")
     test_mst_gather(
-        node_num=8,
+        node_num=16,
         root_id=2
     )
 
     print("="*50)
     print("start testing MST scatter:")
     test_mst_scatter(
-        node_num=8,
+        node_num=16,
         root_id=3
     )
