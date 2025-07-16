@@ -134,11 +134,10 @@ def mrt_topological_sort(nodes:List[Node]):
             elif d == -1:
                 stage_chosen_ids.append(i) 
 
-            # each time step, each node could only send message once
-            if i == len(in_degree) - 1:
-                for chosen_id in stage_chosen_ids:
-                    if copied_nodes[chosen_id].send_fifo:
-                        send_pack = copied_nodes[chosen_id].send_fifo.popleft()
-                        in_degree[send_pack[0].id] -= 1
+        # each time step, each node could only send message once
+        for chosen_id in stage_chosen_ids:
+            if copied_nodes[chosen_id].send_fifo:
+                send_pack = copied_nodes[chosen_id].send_fifo.popleft()
+                in_degree[send_pack[0].id] -= 1
     
     return order
