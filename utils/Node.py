@@ -33,7 +33,7 @@ class Node:
 
             if source_node_target.id == self.id:
                 
-                source_node.check()
+                # source_node.check()
 
                 self.receive_fifo.popleft()
                 source_node.send_fifo.popleft()

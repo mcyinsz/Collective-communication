@@ -2,9 +2,9 @@ from typing import List
 import copy
 from .Node import Node
 
-def complete_transmissions(nodes: List[Node]):
+def mst_complete_transmissions(nodes: List[Node]):
     # Get topological order of nodes (assuming we have a way to determine dependencies)
-    topo_order = mrt_topological_sort(nodes)
+    topo_order = mst_topological_sort(nodes)
     
     changed = True
     while changed:
@@ -21,7 +21,7 @@ def complete_transmissions(nodes: List[Node]):
                 changed = True
 
 # find the first <receive> node
-def mrt_topological_sort(nodes:List[Node]):
+def mst_topological_sort(nodes:List[Node]):
 
     copied_nodes: List[Node] = copy.deepcopy(nodes)
     in_degree: List[int] = [len(node.receive_fifo) for node in nodes]
