@@ -2,9 +2,9 @@ from typing import List
 import copy
 from .Node import Node
 
-def mst_complete_transmissions(nodes: List[Node]):
+def complete_transmissions(nodes: List[Node]):
     # Get topological order of nodes (assuming we have a way to determine dependencies)
-    topo_order = mst_topological_sort(nodes)
+    topo_order = topological_sort(nodes)
     
     changed = True
     while changed:
@@ -13,6 +13,9 @@ def mst_complete_transmissions(nodes: List[Node]):
             # Store current state to detect changes
             before = (len(node.receive_fifo), len(node.send_fifo) if node.send_fifo else 0)
             
+            # print(f"check node {node.id}")
+            # print(f"len {len(node.receive_fifo)}")
+
             node.check()
             
             # Check if this call caused any changes
@@ -21,7 +24,7 @@ def mst_complete_transmissions(nodes: List[Node]):
                 changed = True
 
 # find the first <receive> node
-def mst_topological_sort(nodes:List[Node]):
+def topological_sort(nodes:List[Node]):
 
     copied_nodes: List[Node] = copy.deepcopy(nodes)
     in_degree: List[int] = [len(node.receive_fifo) for node in nodes]

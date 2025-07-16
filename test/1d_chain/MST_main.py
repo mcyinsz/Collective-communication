@@ -3,7 +3,7 @@ import copy
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
 from MST import mst_broadcast, mst_reduce, mst_gather, mst_scatter
-from utils import Node, list_node_datas, mst_complete_transmissions
+from utils import Node, list_node_datas, complete_transmissions
 
 def test_mst_broadcast(
     node_num: int = 4,
@@ -23,7 +23,7 @@ def test_mst_broadcast(
             right=node_num-1 
         )
 
-    mst_complete_transmissions(node_list)
+    complete_transmissions(node_list)
 
     list_node_datas(node_list)
 
@@ -45,7 +45,7 @@ def test_mst_reduce(
             right=node_num-1 
         )
     
-    mst_complete_transmissions(node_list)
+    complete_transmissions(node_list)
     list_node_datas(node_list)
 
 def test_mst_gather(
@@ -67,7 +67,7 @@ def test_mst_gather(
             right=node_num-1 
         )
     
-    mst_complete_transmissions(node_list)
+    complete_transmissions(node_list)
     list_node_datas(node_list)
 
 def test_mst_scatter(
@@ -87,7 +87,7 @@ def test_mst_scatter(
             right=node_num-1 
         )
     
-    mst_complete_transmissions(node_list)
+    complete_transmissions(node_list)
     list_node_datas(node_list)
 
 def test_mst_allreduce(
@@ -110,7 +110,7 @@ def test_mst_allreduce(
             right=node_num-1 
         )
     
-    mst_complete_transmissions(node_list)
+    complete_transmissions(node_list)
 
     for node_id in range(node_num):
         mst_broadcast(
@@ -121,7 +121,7 @@ def test_mst_allreduce(
             right=node_num-1 
         )
     
-    mst_complete_transmissions(node_list)
+    complete_transmissions(node_list)
 
     list_node_datas(node_list)
 

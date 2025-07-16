@@ -32,10 +32,9 @@ class Node:
                 break
 
             if source_node_target.id == self.id:
-                
-                # source_node.check()
 
                 self.receive_fifo.popleft()
+                # print(f"id {self.id}, pop receive fifo")
                 source_node.send_fifo.popleft()
 
                 if comm_type == CommType.SEND:
@@ -43,6 +42,7 @@ class Node:
                     self.data[data_segment[0]: data_segment[1]] = source_node.data[data_segment[0]: data_segment[1]]
                 elif comm_type == CommType.ACCUMULATE:
                     self.data[data_segment[0]: data_segment[1]] = [self.data[i] + source_node.data[i] for i in range(*data_segment)]
+                break
             else:
                 break
     
