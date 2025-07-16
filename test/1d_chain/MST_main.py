@@ -89,6 +89,40 @@ def test_mst_scatter(
     complete_transmissions(node_list)
     list_node_datas(node_list)
 
+def test_mst_allreduce(
+    node_num: int = 4,
+    root_id: int = 1
+):
+
+    node_list = [Node(i, data_size=node_num) for i in range(node_num)]
+    for i,node in enumerate(node_list):
+        node.data = [0] * len(node_list)
+        node.data[i] = 1
+    
+    for node_id in range(node_num):
+        mst_reduce(
+            node_list=node_list,
+            me=node_id,     
+            root=root_id,    
+            left=0,          
+            right=node_num-1 
+        )
+    
+    complete_transmissions(node_list)
+
+    for node_id in range(node_num):
+        mst_broadcast(
+            node_list=node_list,
+            me=node_id,     
+            root=root_id,    
+            left=0,          
+            right=node_num-1 
+        )
+    
+    complete_transmissions(node_list)
+
+    list_node_datas(node_list)
+
 if __name__ == "__main__":
 
     print("="*50)
@@ -117,4 +151,11 @@ if __name__ == "__main__":
     test_mst_scatter(
         node_num=16,
         root_id=3
+    )
+
+    print("="*50)
+    print("start testing MST all-reduce:")
+    test_mst_allreduce(
+        node_num=16,
+        root_id=4
     )
