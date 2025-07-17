@@ -95,7 +95,7 @@ if __name__ == "__main__":
     print("="*50)
     print("start testing BDE reduce-scatter:")
     test_bde_reducescatter(
-        node_num=16,
+        node_num=8,
     )
 
     print("="*50)
