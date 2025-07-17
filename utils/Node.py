@@ -20,7 +20,7 @@ class Node:
         self
     ):
         # handle receive fifo
-        while self.receive_fifo:
+        if self.receive_fifo:
 
             source_node: Node = self.receive_fifo[0]
             
@@ -29,7 +29,7 @@ class Node:
                 comm_type: CommType = source_node.send_fifo[0][1]
                 data_segment: Tuple[int,int] = source_node.send_fifo[0][2]
             else:
-                break
+                pass
 
             if source_node_target.id == self.id:
 
@@ -42,9 +42,9 @@ class Node:
                     self.data[data_segment[0]: data_segment[1]] = source_node.data[data_segment[0]: data_segment[1]]
                 elif comm_type == CommType.ACCUMULATE:
                     self.data[data_segment[0]: data_segment[1]] = [self.data[i] + source_node.data[i] for i in range(*data_segment)]
-                break
+                pass
             else:
-                break
+                pass
     
     def recv(
         self,
