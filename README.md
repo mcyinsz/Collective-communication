@@ -11,7 +11,14 @@
 
 ## BDE (bidirectional exchange)
 
+* reduce-scatter: (n -> n)
+* all-gather: (n -> n)
+
 ![alt text](imgs/BDE.png)
+
+## BKT (bucket / ring algorithm)
 
 * reduce-scatter: (n -> n)
 * all-gather: (n -> n)
+
+![alt text](imgs/BKT.png)
